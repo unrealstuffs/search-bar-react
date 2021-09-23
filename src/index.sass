@@ -1,0 +1,690 @@
+$accent: #1973e8
+$light: #fafafa
+$grey: #ced3d9
+$fontsize: 14px
+$textcolor: #333333
+$mont: Montserrat-s, sans-serif
+
+// FONT LOAD SECTION
+
+@mixin font($fname, $fstyle, $fweight, $furl)
+    @font-face
+        font-family: $fname
+        font-style: $fstyle
+        font-weight: $fweight
+        font-display: swap
+        src: local($fname), url($furl) format('woff2')
+
+@include font('Montserrat-s', normal, 400, 'assets/fonts/montserrat-regular-webfont.woff2')
+@include font('Montserrat-s', normal, 700, 'assets/fonts/montserrat-bold-webfont.woff2')
+
+::placeholder
+    color: #666666
+
+::selection
+    background-color: $accent
+    color: #ffffff
+
+::-webkit-scrollbar
+    width: 0
+    height: 0
+
+::-webkit-scrollbar-button
+    background-repeat: no-repeat
+    width: 0
+    height: 0
+
+::-webkit-scrollbar-thumb
+    border-radius: 50px
+    background-color: #949494
+    opacity: 0.5
+
+::-webkit-scrollbar-track
+    background-color: #ecedee
+    opacity: 0.5
+
+input, textarea
+    outline: none
+
+* 
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    
+body 
+    font-size: $fontsize
+    font-family: $mont
+    min-height: 100vh
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    overflow: hidden
+    transform: translateZ(0)
+    opacity: 0
+    transition: opacity 1s
+    line-height: 1.65
+    outline: none
+
+body.load
+    opacity: 1
+
+// COMMON STYLES
+
+#app
+    min-height: 100vh
+    transform: translateZ(0)
+    display: flex
+    align-items: center
+
+.icon
+    display: inline-block
+    width: 20px
+    height: 20px
+    &-search
+        background: url(assets/img/loupe.svg) center / contain no-repeat
+    &-more
+        background: url(assets/img/more.svg) center / contain no-repeat
+        background-size: 15px;
+    &-settings
+        background: url(assets/img/settings.svg) center / contain no-repeat
+    &-landscape
+        background: url(assets/img/wallpaper.svg) center / contain no-repeat
+    &-apps
+        background: url(assets/img/apps.svg) center / contain no-repeat
+    &-photos
+        background: url(assets/img/photos.svg) center / contain no-repeat
+    &-close
+        background: url(assets/img/close.svg) center / contain no-repeat
+        background-size: 15px;
+    &-bookmark
+        background: url(assets/img/bookmark.svg) center / contain no-repeat
+    &-image
+        background: url(assets/img/image.svg) center / contain no-repeat
+    &-gallery
+        background: url(assets/img/gallery.svg) center / contain no-repeat
+    &-colors
+        background: url(assets/img/colors.svg) center / contain no-repeat
+    // &-plus
+    //     background: url(assets/img/plus.svg) center / contain no-repeat
+    // &-check
+    //     background: url(assets/img/check.svg) center / contain no-repeat
+
+.x-radio
+    display: flex
+    align-items: center
+    user-select: none
+    input
+        display: none
+    &-box
+        width: 16px
+        height: 16px
+        border: 2px solid $accent
+        border-radius: 50%
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-right: 10px
+    &-title
+        font-size: 13px
+    &:hover 
+        transition: all .3s
+        opacity: 0.8
+        cursor: pointer
+
+.x-radio input:checked ~ .x-radio-box:after
+    content: ''
+    display: block
+    width: 8px
+    height: 8px
+    background-color: $accent
+    border-radius: 50%
+
+label.x-checkbox-label
+    cursor: pointer
+    .x-checkbox-input
+        display: none
+    .x-checkbox-box
+        width: 28px
+        height: 12px
+        border-radius: 12px
+        background-color: #bdc1c6
+        position: relative
+        .x-checkbox-circle
+            width: 16px
+            height: 16px
+            border-radius: 50%
+            background-color: #ffffff
+            position: absolute
+            top: 50%
+            left: 0px
+            transition: all .3s
+            margin-top: -8px
+            box-shadow: 0 1px 3px 0 rgba(#000, 0.4)
+
+label.x-checkbox-label .x-checkbox-input:checked ~ .x-checkbox-box
+    background-color: #9db4f2
+
+label.x-checkbox-label .x-checkbox-input:checked ~ .x-checkbox-box .x-checkbox-circle
+    background-color: $accent
+    left: 14px
+
+button
+    &:hover 
+        transition: all .3s
+        opacity: 0.8
+        cursor: pointer
+
+input[type="text"],
+input[type="number"],
+input[type="color"],
+    height: 30px
+    line-height: 30px
+    padding: 0 10px
+    border: 1px solid $grey
+    background-color: transparent
+
+
+
+// MAIN SCREEN
+
+.main-box
+    position: relative
+    width: 45%
+    margin: 200px auto 0
+    @media screen and ( max-width: 768px )
+        width: 70%
+        
+.search-bar
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 40px
+    input
+        width: 100%
+        height: 45px
+        line-height: 45px
+        padding: 0 5px
+        border: none
+        background-color: transparent
+        font-size: 14px
+    .icon
+        width: 45px
+        @media screen and ( max-width: 768px )
+            margin-left: 10px
+
+.pinned-bookmarks-box
+    height: 240px
+    display: flex
+    flex-wrap: wrap
+    position: relative
+    overflow: auto
+    justify-content: center
+    &.light
+        .pinned-bookmarks-item
+            .pinned-bookmarks-title
+                color: #ffffff
+    .pinned-bookmarks-item
+        width: 120px  
+        height: 120px
+        border-radius: 4px
+        transition: all .3s
+        padding: 10px 5px 0
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        position: relative
+        user-select: none
+        text-decoration: none
+        &:hover 
+            opacity: 0.8
+            cursor: pointer
+        .pinned-bookmarks-img
+            width: 70px
+            height: 70px
+            border-radius: 24%
+            background: #ffffff
+            background-position: center
+            background-size: 70%
+            background-repeat: no-repeat
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-bottom: 10px
+        .pinned-bookmarks-title
+            width: 100%
+            overflow: hidden
+            text-overflow: ellipsis
+            padding: 0 5px
+            white-space: nowrap
+            color: #000000
+            font-size: 12px
+            text-decoration: none
+            text-align: center
+
+.show-settings-btn
+    position: absolute
+    bottom: 25px
+    right: 25px
+    border-radius: 50%
+    display: flex
+    padding: 2px
+    cursor: pointer
+    transition: background-color .25s ease
+    &:hover
+        background-color: darken($light, 15%)
+
+// SETTINGS MODAL
+
+.settings-modal
+    position: absolute
+    width: calc( 100vw - 50px )
+    height: calc( 100vh - 50px )
+    top: -1000px
+    left: 25px
+    opacity: 0
+    transition: opacity .5s ease, top .5s ease
+    &.show
+        opacity: 1
+        top: 25px
+    &-head
+        display: flex
+        align-items: center
+        height: 60px
+        padding: 20px 40px
+        border-bottom: 1px solid
+        .icon-close
+            position: absolute
+            right: 20px
+            &:hover 
+                transition: all .3s
+                opacity: 0.8
+                cursor: pointer
+    &-menu
+        display: flex
+        align-items: center
+        &-item
+            display: flex
+            align-items: center
+            margin-right: 30px
+            user-select: none
+            &:hover
+                transition: all .3s
+                opacity: 0.8
+                cursor: pointer
+            .icon
+                width: 14px
+                height: 14px
+                margin-right: 8px
+            &-text 
+                font-size: 14px
+    &-view
+        height: calc( 100vh - 50px - 60px )
+        overflow: auto
+        > div
+            display: none
+
+// GENERAL SETTINGS STYLES
+
+.general-settings-view
+    &.a
+        display: block
+    .container
+        width: 60%
+        margin: 0 auto
+        padding-top: 10px
+    .setting-block-title
+        margin: 30px 0 15px
+        font-weight: bold
+    .setting-block
+        box-shadow: 0 0 6px rgba(#000, 0.1)
+    .setting-item
+        min-height: 60px
+        padding: 0 30px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        &-title
+            font-size: 12px
+        &-text 
+            font-size: 13px
+            line-height: 1.7
+    select 
+        width: 200px
+        height: 32px
+        border: none
+        padding: 0 10px
+        background-color: #f3f3f3
+        font-size: 12px
+        -webkit-appearance: none
+    .radio-boxes
+        display: flex
+        align-items: center
+        .x-radio
+            margin-left: 40px
+    .color-box
+        display: flex
+        align-items: center
+        span
+            margin-right: 10px
+        input
+            padding: 0 3px
+
+// WALLPAPER SETTINGS STYLES
+
+.wp-settings-view
+    &.a
+        display: flex
+        height: 100%
+    .left-part.wp-menu
+        position: relative
+        width: 30%
+        border-right: 1px solid #ececec
+        padding: 30px 25px 0 40px
+        .wp-menu-item
+            display: flex
+            align-items: center
+            border-bottom: 2px solid transparent
+            user-select: none
+            margin-bottom: 10px
+            height: 40px
+            &:hover 
+                transition: all .3s
+                opacity: 0.8
+                cursor: pointer
+            &.a
+                color: $accent
+                // .icon.icon-photos
+                //     background: url(assets/img/photos-a.svg) center / contain no-repeat
+                // .icon.icon-colors
+                //     background: url(assets/img/colors-a.svg) center / contain no-repeat
+                // .icon.icon-upload
+                //     background: url(assets/img/upload-a.svg) center / contain no-repeat
+        .wp-menu-item-text
+            color: #a1abb9
+            font-size: 14px
+        .icon
+            width: 25px
+            height: 25px
+            margin-right: 10px
+    .right-part.wp-view
+        width: 70%
+        position: relative
+        padding: 20px 30px
+        > div
+            display: none
+            &.a
+                display: block
+    .previews
+        display: flex
+        flex-wrap: wrap
+        .preview-box
+            width: 20%
+            padding: 0 5px 5px 0
+            overflow: hidden
+            &:nth-child(5n)
+                padding-right: 0
+        .preview
+            display: flex
+            align-items: center
+            justify-content: center
+            background-size: cover
+            background-position: center
+            width: 100%
+            height: 120px
+            position: relative
+            overflow: hidden
+            &:hover
+                transition: all .3s
+                opacity: 0.8
+                cursor: pointer
+            .category-name
+                display: block
+                width: 100%
+                height: 100%
+                line-height: 120px
+                text-transform: uppercase
+                color: #ffffff
+                font-size: 13px
+                font-weight: bold
+                background: rgba(#000, 0.2)
+                text-align: center
+
+.photos-view
+    .wp-search
+        display: flex
+        align-items: center
+        background-color: #ffffff
+        border: 1px solid #ced3d9
+        margin-bottom: 20px
+        .icon-search
+            width: 34px
+            height: 14px
+        input
+            width: 100%
+            height: 30px
+            line-height: 30px
+            padding: 0 10px
+            border: none
+            background-color: transparent
+            color: #666666
+
+.colors-view
+    .input-box
+        display: flex
+        align-items: center
+        background: #ffffff
+        border: 1px solid #ced3d9
+        margin-bottom: 20px
+        &.error
+            border: 1px solid red
+        input[type="text"]
+            width: 100%
+            height: 30px
+            line-height: 30px
+            padding: 0 10px
+            border: none
+            background-color: transparent
+            color: #666666
+        input[type="color"]
+            width: 50px
+            height: 20px
+            margin-right: 10px
+            vertical-align: middle
+            -webkit-appearance: none
+            border: 1px solid #ced3d9
+            cursor: pointer
+            &::-webkit-color-swatch-wrapper
+                padding: 0
+            &::-webkit-color-swatch
+                border: none
+        .add-color-btn
+            background: $accent
+            border: none
+            height: 32px
+            padding: 0 20px
+            color: #ffffff
+            font-size: 12px
+            margin: -2px -1px
+
+.upload-view
+    .add-img-area
+        display: block
+        padding: 60px 20px
+        margin-bottom: 10px
+        background: #ffffff
+        color: #a9b2bf
+        border: 1px solid #ced3d9
+        text-align: center
+        position: relative
+        input[type="file"]
+            display: block
+            position: absolute
+            opacity: 0
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            cursor: pointer
+        .text
+            font-size: 14px
+            line-height: 1.5
+            &:first-of-type
+                margin-bottom: 15px
+        .blue-text
+            color: $accent
+    .add-img-desc
+        font-size: 12px
+        text-align: right
+        color: #a9b2bf
+        margin-bottom: 20px
+
+// APPS SETTINGS STYLES
+
+.apps-settings-view
+    padding: 40px 0
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    &.a
+        display: flex
+    .apps-item
+        width: 100px
+        text-align: center
+        color: #666666
+        margin-bottom: 30px
+        user-select: none
+        &:hover
+            transition: all .3s
+            opacity: 0.8
+            cursor: pointer
+    input
+        display: none
+        &:checked ~ .app-uncheck
+            display: none
+        &:checked ~ .app-check
+            display: inline-flex
+    .app-icon
+        display: inline-block
+        width: 60px
+        height: 60px
+        margin-bottom: 10px
+        background-size: contain
+        background-position: center
+        background-repeat: no-repeat
+    .app-title
+        font-size: 13px
+        margin-bottom: 10px
+    .check-state
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        width: 20px
+        height: 20px
+        .icon
+            width: 12px
+            height: 12px
+    .app-uncheck
+        display: inline-flex
+        background: #d3d3d3
+    .app-check
+        display: none
+        background: #0dc97b
+
+// BOOKMARKS STYLES
+
+.bookmarks-view
+    padding: 30px
+    flex-wrap: wrap
+    &.a
+        display: flex
+    .bookmark-box
+        width: 12.5%
+        height: 9vw
+        padding: 8px
+    .bookmark
+        display: block
+        width: 100%
+        height: 100%
+        border: 1px solid #efefef
+        &-head
+            display: flex
+            align-items: center
+            height: 30px
+            background-color: #efefef
+            padding: 0 4px
+            position: relative
+            .bookmark-favicon
+                margin-right: 5px
+            .bookmark-title
+                width: 100%
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+                color: #333
+                font-size: 12px
+        &-body
+            display: block
+            height: calc(100% - 30px)
+            background-position: center
+            background-size: cover
+            background-repeat: no-repeat
+
+// MEDIA QUERIES STYLES
+
+@media screen and ( max-width: 768px )
+    .wp-settings-view
+        flex-direction: column
+        .left-part.wp-menu, .right-part.wp-view
+            width: 100%
+        .left-part.wp-menu
+            display: flex
+            justify-content: space-around
+            padding: 30px 25px 0 25px
+        .previews
+            .preview-box
+                width: 33.3%
+                &:nth-child(5n)
+                    padding-right: 5px
+                &:nth-child(3n)
+                    padding-right: 0
+    .general-settings-view
+        .radio-boxes
+            flex-direction: column
+            align-items: start
+@media screen and ( max-width: 480px )
+    .wp-settings-view
+        .left-part.wp-menu
+            justify-content: space-between
+            .wp-menu-item
+                flex-direction: column
+                &-text 
+                    font-size: 12px
+        .previews
+            .preview-box
+                width: 50%
+                &:nth-child(5n), &:nth-child(3n)
+                    padding-right: 5px
+                &:nth-child(2n)
+                    padding-right: 0
+    .settings-modal-head
+        align-items: start
+        height: auto
+    .settings-modal-menu
+        flex-direction: column
+        align-items: start
+        width: 100%
+        &-item
+            margin: 7px 0
+    .settings-modal-view
+        height: calc( 100vh - 50px - 152px )
+    .general-settings-view
+        .setting-block-title
+            margin: 10px 0 10px
+        .container
+            width: 80%
+        .setting-item
+            padding: 0 10px
+
+@import "styles/dark-theme"

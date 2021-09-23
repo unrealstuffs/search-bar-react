@@ -1,0 +1,54 @@
+$accent: #1973e8
+$light: #fafafa
+$grey: #ced3d9
+$dark: #333333
+
+body .dark
+    color: #ffffff
+
+body .light
+    color: $dark
+    
+#app.dark
+    .search-bar
+        background: rgba($dark, .7)
+        input
+            color: #ffffff
+    .show-settings-btn
+        background-color: $dark
+    .settings-modal
+        background-color: $dark
+        &-head
+            border-color: #444
+        &-menu
+            &-item
+                &-text
+                    color: #fff
+
+    .general-settings-view
+        .setting-block-title
+            color: $light
+        .setting-block
+            background: #444
+        .setting-item
+            border-bottom: 1px solid #666
+#app.light
+    .search-bar
+        background: rgba(#fff, 0.8)
+    .show-settings-btn
+        background-color: $light
+    .settings-modal
+        background-color: $light
+        &-head
+            border-color: #ececec
+        &-menu
+            &-item
+                &-text
+                    color: #666
+    .general-settings-view
+        .setting-block-title
+            color: #3d3d3d
+        .setting-block
+            background: #ffffff
+        .setting-item
+            border-bottom: 1px solid #eee

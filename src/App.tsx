@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CSSProperties } from "react";
+import SearchBar from "./components/SearchBar";
+import SettingsModal from "./components/SettingsModal";
+import ShowSettingsBtn from "./components/ShowSettingsBtn";
+import { useTypedSelector } from "./hooks/useTypedSelector";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    const { background, theme } = useTypedSelector((state) => state.settings);
+    const style: CSSProperties = {
+        background: `${background} center center / cover no-repeat`,
+    };
+
+    return (
+        <div id="app" style={style} className={theme}>
+            <SearchBar />
+            <ShowSettingsBtn />
+            <SettingsModal />
+        </div>
+    );
+};
 
 export default App;
