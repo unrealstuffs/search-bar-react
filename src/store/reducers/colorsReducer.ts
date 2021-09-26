@@ -9,10 +9,6 @@ export const colorsReducer = (
     action: ColorsAction
 ): ColorsState => {
     switch (action.type) {
-        case ColorsActionTypes.GET_COLORS:
-            return {
-                ...state,
-            };
         case ColorsActionTypes.SET_COLORS:
             return {
                 ...state,

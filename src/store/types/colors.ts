@@ -3,12 +3,7 @@ export interface ColorsState {
 }
 
 export enum ColorsActionTypes {
-    GET_COLORS = "GET_COLORS",
     SET_COLORS = "SET_COLORS",
-}
-
-interface GetColorsAction {
-    type: ColorsActionTypes.GET_COLORS;
 }
 
 interface SetColorsAction {
@@ -16,4 +11,4 @@ interface SetColorsAction {
     payload: string[];
 }
 
-export type ColorsAction = GetColorsAction | SetColorsAction;
+export type ColorsAction = SetColorsAction;
