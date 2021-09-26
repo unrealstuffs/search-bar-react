@@ -4,13 +4,19 @@ import {
     SettingsState,
 } from "../types/settings";
 
-const initialState: SettingsState = {
-    searchSystem: "yandex",
-    background:
-        "url(https://images.unsplash.com/photo-1533717993428-cb1b3810dee1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b4491527eac86ad79151a04e568d1429&auto=format&fit=crop&w=1920)",
-    roundingLine: 5,
-    theme: "light",
-};
+let initialState: SettingsState;
+
+if (localStorage.getItem("settings")) {
+    initialState = JSON.parse(localStorage.getItem("settings") || "{}");
+} else {
+    initialState = {
+        searchSystem: "yandex",
+        background:
+            "url(https://images.unsplash.com/photo-1533717993428-cb1b3810dee1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b4491527eac86ad79151a04e568d1429&auto=format&fit=crop&w=1920)",
+        roundingLine: 5,
+        theme: "light",
+    };
+}
 
 export const settingsReducer = (
     state = initialState,

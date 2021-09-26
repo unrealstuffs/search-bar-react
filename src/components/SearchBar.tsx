@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import PinnedApps from "./PinnedApps";
 
 const SearchBar: React.FC = () => {
     const searchBarInput = useRef<HTMLInputElement>(null);
@@ -34,7 +35,7 @@ const SearchBar: React.FC = () => {
                     type="text"
                 />
             </form>
-            <div className="pinned-bookmarks-box light"></div>
+            <PinnedApps />
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import AppsModal from "./components/AppsModal";
 import SearchBar from "./components/SearchBar";
 import SettingsModal from "./components/SettingsModal";
 import ShowSettingsBtn from "./components/ShowSettingsBtn";
@@ -15,6 +16,7 @@ const App: React.FC = () => {
             <SearchBar />
             <ShowSettingsBtn />
             <SettingsModal />
+            <AppsModal />
         </div>
     );
 };

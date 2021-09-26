@@ -3,12 +3,18 @@ export interface ModalState {
 }
 
 export enum ModalActionTypes {
-    TOGGLE_MODAL = "TOGGLE_MODAL",
+    TOGGLE_SETTINGS_MODAL = "TOGGLE_SETTINGS_MODAL",
+    TOGGLE_APPS_MODAL = "TOGGLE_APPS_MODAL",
 }
 
 interface ToggleModalAction {
-    type: ModalActionTypes.TOGGLE_MODAL;
+    type: ModalActionTypes.TOGGLE_SETTINGS_MODAL;
     payload: boolean;
 }
 
-export type ModalAction = ToggleModalAction;
+interface ToggleAppsModal {
+    type: ModalActionTypes.TOGGLE_APPS_MODAL;
+    payload: boolean;
+}
+
+export type ModalAction = ToggleModalAction | ToggleAppsModal;

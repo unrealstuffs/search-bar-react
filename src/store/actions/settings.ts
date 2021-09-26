@@ -7,8 +7,13 @@ import { Dispatch } from "redux";
 
 export const setSettings =
     (settings: SettingsState) => (dispatch: Dispatch<SettingsAction>) => {
-        dispatch({
-            type: SettingsActionTypes.SET_SETTINGS,
-            payload: settings,
-        });
+        try {
+            localStorage.setItem("settings", JSON.stringify(settings));
+            dispatch({
+                type: SettingsActionTypes.SET_SETTINGS,
+                payload: settings,
+            });
+        } catch (error) {
+            throw error;
+        }
     };

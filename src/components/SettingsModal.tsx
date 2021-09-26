@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import AppsSettings from "./AppsSettings";
+import BookmarksSettings from "./BookmarksSettings";
 import GeneralSettings from "./GeneralSettings";
 import WPSettings from "./WPSettings";
 
 const SettingsModal = () => {
-    const { toggleModal } = useActions();
-    const { isOpen } = useTypedSelector((state) => state.modal);
+    const { toggleSettingsModal } = useActions();
+    const { isOpen } = useTypedSelector((state) => state.settingsModal);
     const [modalIndex, setModalIndex] = useState(1);
 
     const handleClose = () => {
-        toggleModal(false);
+        toggleSettingsModal(false);
     };
 
     const toggleTab = (index: number) => {
@@ -59,46 +61,10 @@ const SettingsModal = () => {
                 <div className="icon icon-close" onClick={handleClose}></div>
             </div>
             <div className="settings-modal-view">
-                <div
-                    className={
-                        "general-settings-view" + (modalIndex === 1 ? " a" : "")
-                    }
-                >
-                    <GeneralSettings />
-                </div>
-                <div
-                    className={
-                        "wp-settings-view" + (modalIndex === 2 ? " a" : "")
-                    }
-                >
-                    <WPSettings />
-                </div>
-                <div
-                    className={
-                        "apps-settings-view" + (modalIndex === 3 ? " a" : "")
-                    }
-                >
-                    Совсем скоро здесь появятся приложения
-                </div>
-                <div
-                    className={
-                        "bookmarks-view" + (modalIndex === 4 ? " a" : "")
-                    }
-                >
-                    Совсем скоро здесь появятся закладки
-                    {/* <div className="bookmark-box">
-                        <div className="bookmark">
-                            <div className="bookmark-head">
-                                <div className="bookmark-favicon"></div>
-                                <div className="bookmark-title"></div>
-                            </div>
-                            <a
-                                href="https://google.com"
-                                className="bookmark-body"
-                            ></a>
-                        </div>
-                    </div> */}
-                </div>
+                <GeneralSettings activeClass={modalIndex === 1 ? " a" : ""} />
+                <WPSettings activeClass={modalIndex === 2 ? " a" : ""} />
+                <AppsSettings activeClass={modalIndex === 3 ? " a" : ""} />
+                <BookmarksSettings activeClass={modalIndex === 4 ? " a" : ""} />
             </div>
         </div>
     );

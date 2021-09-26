@@ -4,7 +4,11 @@ import ColorsPreviews from "./ColorsPreviews";
 import PhotosPreviews from "./PhotosPreviews";
 import UploadPhoto from "./UploadPhoto";
 
-const WPSettings = () => {
+interface Props {
+    activeClass: string;
+}
+
+const WPSettings = (props: Props) => {
     const [modalIndex, setModalIndex] = useState(1);
     const { setCategory } = useActions();
 
@@ -13,7 +17,7 @@ const WPSettings = () => {
     };
 
     return (
-        <>
+        <div className={"wp-settings-view" + props.activeClass}>
             <div className="left-part wp-menu">
                 <div
                     className="wp-menu-item"
@@ -39,7 +43,7 @@ const WPSettings = () => {
                 <ColorsPreviews activeClass={modalIndex === 2 ? " a" : ""} />
                 <UploadPhoto activeClass={modalIndex === 3 ? " a" : ""} />
             </div>
-        </>
+        </div>
     );
 };
 

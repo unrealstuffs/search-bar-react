@@ -6,7 +6,7 @@ const initialState: AppsState = {
     error: null,
 };
 
-export const setApps = (
+export const appsReducer = (
     state = initialState,
     action: AppsAction
 ): AppsState => {

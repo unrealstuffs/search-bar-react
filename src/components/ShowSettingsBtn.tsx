@@ -1,10 +1,10 @@
 import { useActions } from "../hooks/useActions";
 
 const ShowSettingsBtn = () => {
-    const { toggleModal } = useActions();
+    const { toggleSettingsModal } = useActions();
 
     const handleButton = () => {
-        toggleModal(true);
+        toggleSettingsModal(true);
     };
 
     return (
