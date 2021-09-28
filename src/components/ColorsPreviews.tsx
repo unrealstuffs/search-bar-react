@@ -25,7 +25,6 @@ const ColorsPreviews = (props: Props) => {
         newColors.unshift(color);
 
         setColors(newColors);
-        console.log(colors);
     };
 
     return (

@@ -88,6 +88,7 @@ const GeneralSettings = (props: Props) => {
                                 type="number"
                                 value={settings.roundingLine}
                                 onChange={roundingLineChangeHandler}
+                                className="settings-input"
                             />
                         </label>
                     </div>

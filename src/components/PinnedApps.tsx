@@ -4,7 +4,7 @@ const PinnedApps = () => {
     const { apps } = useTypedSelector((state) => state.apps);
 
     return (
-        <div className="pinned-bookmarks-box light">
+        <div className="pinned-bookmarks-box">
             {apps &&
                 apps.map((app: any, i) => (
                     <a

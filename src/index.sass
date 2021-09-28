@@ -18,9 +18,6 @@ $mont: Montserrat-s, sans-serif
 @include font('Montserrat-s', normal, 400, 'assets/fonts/montserrat-regular-webfont.woff2')
 @include font('Montserrat-s', normal, 700, 'assets/fonts/montserrat-bold-webfont.woff2')
 
-::placeholder
-    color: #666666
-
 ::selection
     background-color: $accent
     color: #ffffff
@@ -80,39 +77,6 @@ body.load
     display: inline-block
     width: 20px
     height: 20px
-    &-search
-        background: url(assets/img/loupe.svg) center / contain no-repeat
-    &-more
-        background: url(assets/img/more.svg) center / contain no-repeat
-        background-size: 15px;
-    &-settings
-        background: url(assets/img/settings.svg) center / contain no-repeat
-    &-landscape
-        background: url(assets/img/wallpaper.svg) center / contain no-repeat
-    &-apps
-        background: url(assets/img/apps.svg) center / contain no-repeat
-    &-photos
-        background: url(assets/img/photos.svg) center / contain no-repeat
-    &-close
-        background: url(assets/img/close.svg) center / contain no-repeat
-        background-size: 12px;
-    &-bookmark
-        background: url(assets/img/bookmark.svg) center / contain no-repeat
-    &-image
-        background: url(assets/img/image.svg) center / contain no-repeat
-    &-gallery
-        background: url(assets/img/gallery.svg) center / contain no-repeat
-    &-colors
-        background: url(assets/img/colors.svg) center / contain no-repeat
-    &-plus
-        background: url(assets/img/plus.svg) center / contain no-repeat
-        transform: rotate(45deg)
-    &-plus-2
-        background: url(assets/img/plus2.svg) center / contain no-repeat
-    &-upload
-        background: url(assets/img/upload.svg) center / contain no-repeat
-    &-save
-        background: url(assets/img/save.svg) center / contain no-repeat
 
 .x-radio
     display: flex
@@ -177,21 +141,10 @@ button
     &:hover 
         transition: all .3s
         opacity: 0.8
-        cursor: pointer
-
-input[type="text"],
-input[type="number"],
-input[type="color"],
-    height: 30px
-    line-height: 30px
-    padding: 0 10px
-    border: 1px solid $grey
-    background-color: transparent
+        cursor: pointer    
 
 input[type="file"]
     display: none
-
-
 
 // MAIN SCREEN
 
@@ -227,10 +180,6 @@ input[type="file"]
     position: relative
     overflow: auto
     justify-content: flex-start
-    &.light
-        .pinned-bookmarks-item
-            .pinned-bookmarks-title
-                color: #ffffff
     .pinned-bookmarks-item
         width: 120px  
         height: 120px
@@ -251,7 +200,6 @@ input[type="file"]
             width: 70px
             height: 70px
             border-radius: 24%
-            background: #ffffff
             background-position: center
             background-size: 70%
             background-repeat: no-repeat
@@ -265,7 +213,6 @@ input[type="file"]
             text-overflow: ellipsis
             padding: 0 5px
             white-space: nowrap
-            color: #000000
             font-size: 12px
             text-decoration: none
             text-align: center
@@ -357,12 +304,14 @@ input[type="file"]
         &-text 
             font-size: 13px
             line-height: 1.7
+            a
+                &:visited
+                    color: $accent
     select 
         width: 200px
         height: 32px
         border: none
         padding: 0 10px
-        background-color: #f3f3f3
         font-size: 12px
         -webkit-appearance: none
     .radio-boxes
@@ -370,13 +319,11 @@ input[type="file"]
         align-items: center
         .x-radio
             margin-left: 40px
-    .color-box
-        display: flex
-        align-items: center
-        span
-            margin-right: 10px
-        input
-            padding: 0 3px
+    .settings-input
+        border: none
+        height: 30px
+        line-height: 30px
+        padding: 0 10px
 
 // WALLPAPER SETTINGS STYLES
 
@@ -387,7 +334,7 @@ input[type="file"]
     .left-part.wp-menu
         position: relative
         width: 30%
-        border-right: 1px solid #ececec
+        border-right: 1px solid
         padding: 30px 25px 0 40px
         .wp-menu-item
             display: flex
@@ -402,14 +349,7 @@ input[type="file"]
                 cursor: pointer
             &.a
                 color: $accent
-                // .icon.icon-photos
-                //     background: url(assets/img/photos-a.svg) center / contain no-repeat
-                // .icon.icon-colors
-                //     background: url(assets/img/colors-a.svg) center / contain no-repeat
-                // .icon.icon-upload
-                //     background: url(assets/img/upload-a.svg) center / contain no-repeat
         .wp-menu-item-text
-            color: #a1abb9
             font-size: 14px
         .icon
             width: 25px
@@ -462,8 +402,7 @@ input[type="file"]
     .wp-search
         display: flex
         align-items: center
-        background-color: #ffffff
-        border: 1px solid #ced3d9
+        border: 1px solid
         margin-bottom: 20px
         .icon-search
             width: 34px
@@ -475,17 +414,13 @@ input[type="file"]
             padding: 0 10px
             border: none
             background-color: transparent
-            color: #666666
 
 .colors-view
     .input-box
         display: flex
         align-items: center
-        background: #ffffff
-        border: 1px solid #ced3d9
+        border: 1px solid
         margin-bottom: 20px
-        &.error
-            border: 1px solid red
         input[type="text"]
             width: 100%
             height: 30px
@@ -493,14 +428,13 @@ input[type="file"]
             padding: 0 10px
             border: none
             background-color: transparent
-            color: #666666
         input[type="color"]
             width: 50px
             height: 20px
             margin-right: 10px
             vertical-align: middle
             -webkit-appearance: none
-            border: 1px solid #ced3d9
+            border: 1px solid
             cursor: pointer
             &::-webkit-color-swatch-wrapper
                 padding: 0
@@ -520,9 +454,7 @@ input[type="file"]
         display: block
         padding: 60px 20px
         margin-bottom: 10px
-        background: #ffffff
-        color: #a9b2bf
-        border: 1px solid #ced3d9
+        border: 1px solid
         text-align: center
         position: relative
         input[type="file"]
@@ -558,7 +490,6 @@ input[type="file"]
     .apps-item
         width: 15%
         text-align: center
-        color: #666666
         margin-bottom: 30px
         user-select: none
         position: relative
@@ -619,8 +550,6 @@ input[type="file"]
         position: relative
         border-radius: 0
         z-index: 1100
-        background-color: #fafafa
-        color: #666
         padding: 20px 30px
     .modal-head
         display: flex
@@ -628,7 +557,7 @@ input[type="file"]
         justify-content: space-between
         padding-bottom: 10px
         margin-bottom: 16px
-        border-bottom: 1px solid #c3c3c3
+        border-bottom: 1px solid
         .icon:hover
             transition: opacity .25s ease
             opacity: 0.8
@@ -648,9 +577,7 @@ input[type="file"]
             padding: 0 10px
             line-height: 1
             font-size: 12px
-            background-color: #fff
-            color: #333
-            border: 1px solid #c3c3c3
+            border: 1px solid
     .box
         display: flex
         align-items: flex-end
@@ -661,8 +588,7 @@ input[type="file"]
     .preview
         width: 150px
         height: 100px
-        background-color: #fff
-        border: 1px solid #c3c3c3
+        border: 1px solid
         background-size: cover
         background-position: center
     .btns-box
@@ -699,12 +625,11 @@ input[type="file"]
         display: block
         width: 100%
         height: 100%
-        border: 1px solid #efefef
+        border: 1px solid
         &-head
             display: flex
             align-items: center
             height: 30px
-            background-color: #efefef
             padding: 0 4px
             position: relative
             .bookmark-favicon
@@ -714,7 +639,6 @@ input[type="file"]
                 overflow: hidden
                 text-overflow: ellipsis
                 white-space: nowrap
-                color: #333
                 font-size: 12px
         &-body
             display: block
@@ -722,8 +646,6 @@ input[type="file"]
             background-position: center
             background-size: cover
             background-repeat: no-repeat
-
-
 
 // MEDIA QUERIES STYLES
 
@@ -782,3 +704,4 @@ input[type="file"]
             padding: 0 10px
 
 @import "styles/dark-theme"
+@import "styles/light-theme"

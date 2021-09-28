@@ -5,11 +5,46 @@ $dark: #333333
 
 body .dark
     color: #ffffff
-
-body .light
-    color: $dark
+    ::placeholder
+        color: #ced3d9
     
 #app.dark
+
+    .icon
+        &-search
+            background: url(../assets/img/dark-theme/search.svg) center / contain no-repeat
+        &-more
+            background: url(../assets/img/dark-theme/more.svg) center / contain no-repeat
+            background-size: 15px;
+        &-settings
+            background: url(../assets/img/dark-theme/settings.svg) center / contain no-repeat
+        &-landscape
+            background: url(../assets/img/dark-theme/wallpaper.svg) center / contain no-repeat
+        &-apps
+            background: url(../assets/img/dark-theme/apps.svg) center / contain no-repeat
+        &-photos
+            background: url(../assets/img/dark-theme/photos.svg) center / contain no-repeat
+        &-close
+            background: url(../assets/img/dark-theme/close.svg) center / contain no-repeat
+            background-size: 12px;
+        &-bookmark
+            background: url(../assets/img/dark-theme/bookmark.svg) center / contain no-repeat
+        &-image
+            background: url(../assets/img/dark-theme/image.svg) center / contain no-repeat
+        &-gallery
+            background: url(../assets/img/dark-theme/gallery.svg) center / contain no-repeat
+        &-colors
+            background: url(../assets/img/dark-theme/colors.svg) center / contain no-repeat
+        &-plus
+            background: url(../assets/img/dark-theme/plus.svg) center / contain no-repeat
+            transform: rotate(45deg)
+        &-plus-2
+            background: url(../assets/img/dark-theme/plus2.svg) center / contain no-repeat
+        &-upload
+            background: url(../assets/img/dark-theme/upload.svg) center / contain no-repeat
+        &-save
+            background: url(../assets/img/dark-theme/save.svg) center / contain no-repeat
+
     .search-bar
         background: rgba($dark, .7)
         input
@@ -25,6 +60,13 @@ body .light
                 &-text
                     color: #fff
 
+    .pinned-bookmarks-box
+        .pinned-bookmarks-item
+            .pinned-bookmarks-img
+                background: #333
+            .pinned-bookmarks-title
+                color: #fff
+
     .general-settings-view
         .setting-block-title
             color: $light
@@ -32,23 +74,63 @@ body .light
             background: #444
         .setting-item
             border-bottom: 1px solid #666
-#app.light
-    .search-bar
-        background: rgba(#fff, 0.8)
-    .show-settings-btn
-        background-color: $light
-    .settings-modal
-        background-color: $light
-        &-head
-            border-color: #ececec
-        &-menu
-            &-item
-                &-text
-                    color: #666
-    .general-settings-view
-        .setting-block-title
-            color: #3d3d3d
-        .setting-block
-            background: #ffffff
-        .setting-item
-            border-bottom: 1px solid #eee
+        select
+            background-color: #555
+            color: #fff
+        .settings-input
+            background-color: #555
+            color: #fff
+    .wp-settings-view
+        .left-part.wp-menu
+            border-color: #444
+            .wp-menu-item-text
+                color: #fff
+
+    .photos-view
+        .wp-search
+            background-color: #555
+            border-color: #666
+            input
+                color: #fff
+
+    .colors-view
+        .input-box
+            background-color: #555
+            border-color: #666
+            input[type="text"]
+                color: #fff
+            input[type="color"]
+                border-color: #666
+
+    .upload-view
+        .add-img-area
+            background-color: #555
+            border-color: #666
+            color: #fff
+
+    .apps-settings-view
+        .apps-item
+            color: #fff
+
+    .modal-overlay
+        .modal
+            background-color: #333
+            color: #fff
+        .modal-head
+            border-color: #444
+        .input-box
+            input
+                background-color: #555
+                color: #fff
+                border-color: #666
+        .preview
+            background-color: #555
+            border-color: #666
+
+    .bookmarks-view
+        .bookmark
+            border-color: #555
+            &-head
+                background-color: #666
+                .bookmark-title
+                    color: #fff

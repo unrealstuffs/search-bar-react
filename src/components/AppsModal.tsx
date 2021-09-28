@@ -11,7 +11,7 @@ const AppsModal = () => {
 
     const [url, setUrl] = useState("");
     const [name, setName] = useState("");
-    const [file, setFile] = useState("");
+    const [imagePreview, setImagePreview] = useState<any>("");
 
     const handleClose = () => {
         toggleAppsModal(false);
@@ -22,29 +22,37 @@ const AppsModal = () => {
         fileRef.current?.click();
     };
 
-    const uploadImageHandler = (uploadedFile: any) => {
-        setFile(`url(${URL.createObjectURL(uploadedFile)})`);
-    };
-
-    const submitHandler = (e: any) => {
+    const fileSubmitHandler = (e: any) => {
         e.preventDefault();
 
         const newApps = apps;
-
         const newApp: any = {
             url,
             name,
-            file,
+            file: `url(${imagePreview})`,
         };
         newApps.push(newApp);
-
         setApps(newApps);
 
-        setFile("");
+        setImagePreview("");
         setName("");
         setUrl("");
 
         toggleAppsModal(false);
+    };
+
+    const photoUploadHandler = (e: any) => {
+        e.preventDefault();
+
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        if (reader && file) {
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
@@ -57,14 +65,14 @@ const AppsModal = () => {
                         onClick={handleClose}
                     ></div>
                 </div>
-                <form className="modal-body" onSubmit={submitHandler}>
+                <form className="modal-body" onSubmit={fileSubmitHandler}>
                     <div className="input-box">
                         <label htmlFor="url">URL</label>
                         <input
                             name="url"
                             type="url"
                             value={url}
-                            onChange={(e) => setUrl(e.currentTarget.value)}
+                            onChange={(e) => setUrl(e.target.value)}
                         />
                     </div>
                     <div className="input-box">
@@ -81,14 +89,14 @@ const AppsModal = () => {
                             type="file"
                             accept="image/*"
                             ref={fileRef}
-                            onChange={(e: any) =>
-                                uploadImageHandler(e.target.files[0])
-                            }
+                            onChange={photoUploadHandler}
                         />
                         <div className="preview-box">
                             <div
                                 className="preview"
-                                style={{ backgroundImage: file }}
+                                style={{
+                                    backgroundImage: `url(${imagePreview})`,
+                                }}
                             ></div>
                         </div>
                         <div className="btns-box">

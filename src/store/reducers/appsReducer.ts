@@ -1,7 +1,9 @@
 import { AppsAction, AppsActionTypes, AppsState } from "../types/apps";
 
 const initialState: AppsState = {
-    apps: [],
+    apps: localStorage.getItem("apps")
+        ? JSON.parse(localStorage.getItem("apps") || "[]")
+        : [],
     loading: false,
     error: null,
 };

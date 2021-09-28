@@ -1,5 +1,6 @@
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
+import { useState } from "react";
 
 interface Props {
     activeClass: string;
@@ -8,23 +9,29 @@ interface Props {
 const UploadPhoto = (props: Props) => {
     const settings = useTypedSelector((state) => state.settings);
     const { setSettings } = useActions();
+    const [image, setImage] = useState<any>();
 
-    const uploadImageHandle = (file: any) => {
-        const newSettings = settings;
-        newSettings.background = `url(${URL.createObjectURL(file)})`;
+    const uploadImageHandle = (e: any) => {
+        e.preventDefault();
 
-        setSettings(newSettings);
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        if (reader && file) {
+            reader.onloadend = () => {
+                setImage(reader.result);
+                const newSettings = settings;
+                newSettings.background = `url(${image})`;
+                setSettings(newSettings);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
         <div className={"upload-view" + props.activeClass}>
             <label className="add-img-area">
-                <input
-                    type="file"
-                    onChange={(event: any) => {
-                        uploadImageHandle(event.target.files[0]);
-                    }}
-                />
+                <input type="file" onChange={uploadImageHandle} />
                 <div className="text">Добавить изображение</div>
                 <div className="text">
                     Переместите сюда изображение или

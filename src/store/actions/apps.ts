@@ -6,6 +6,7 @@ export const setApps = (apps: string[]) => (dispatch: Dispatch) => {
         dispatch({
             type: AppsActionTypes.SET_APPS_REQUEST,
         });
+        localStorage.setItem("apps", JSON.stringify(apps));
         dispatch({
             type: AppsActionTypes.SET_APPS_SUCCESS,
             payload: apps,

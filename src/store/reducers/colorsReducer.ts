@@ -1,7 +1,9 @@
 import { ColorsAction, ColorsActionTypes, ColorsState } from "../types/colors";
 
 const initialState: ColorsState = {
-    colors: [],
+    colors: localStorage.getItem("colors")
+        ? JSON.parse(localStorage.getItem("colors") || "[]")
+        : [],
 };
 
 export const colorsReducer = (
