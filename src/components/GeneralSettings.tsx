@@ -104,7 +104,7 @@ const GeneralSettings = (props: Props) => {
                     <div className="setting-item">
                         <div className="setting-item-text">
                             <a
-                                href="https://github.com/unrealstuffs/Search_Bar"
+                                href="https://github.com/unrealstuffs/search-bar-react"
                                 target="_blank"
                                 rel="noreferrer"
                             >
